@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iván Álvarez Puerta — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #555;
+      --accent: #3457d5;
+      --card: #f8f9fb;
+      --shadow: rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      transition: opacity .3s ease;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 12%;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    p.lead {
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 6px 16px var(--shadow);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .skills-list li {
+      background: #eef1f7;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Buttons */
+    .projects-btn {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      padding: 10px 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 100;
+    }
+
+    .home-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 42px;
+      height: 42px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      z-index: 150;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 240px;
+      height: 100%;
+      background: var(--card);
+      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+      transition: left .3s ease;
+      z-index: 90;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .sidebar.show {
+      left: 0;
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .sidebar button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .sidebar button:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* Modal (projects) */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      width: 90%;
+      max-width: 800px;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    iframe {
+      width: 100%;
+      height: 480px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    a.download-btn {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--accent);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    /* Projects view */
+    #projectsView {
+      display: none;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 3px 10px var(--shadow);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .project-card img {
+      max-width: 300px;
+      max-height: 300px;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 12px;
+      border-radius: 12px;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 6px 18px var(--shadow);
+    }
+
+    #programBox .card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    #programBox .card div:first-child {
+      flex-shrink: 0;
+    }
+
+    #programBox img {
+      width: auto;
+      height: 120px;
+      max-width: 120px;
+      object-fit: contain;
+      border-radius: 12%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    @media(max-width:880px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        width: 200px;
+      }
+    }
+
+    @media(max-width:480px) {
+      .sidebar {
+        width: 180px;
+      }
+
+      #programBox .card {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* 🔐 Password Modal */
+    .password-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .password-box {
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      max-width: 300px;
+      width: 90%;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .password-box input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #333;
+      transition: transform 0.25s ease, color 0.25s ease;
+    }
+
+    .close-btn:hover {
+      transform: scale(1.2) rotate(90deg);
+      color: #d7263d; /* rojo elegante */
+    }
+
+
+    .password-box button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      margin-top: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    .password-box button:hover {
+      background: #2848c2;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🔒 Modal de contraseña -->
+  <div id="passwordModal" class="password-modal">
+    <div class="password-box">
+      <h2>🔒 Protected Portfolio</h2>
+      <p>Please enter the access password:</p>
+      <input type="password" id="passwordInput" placeholder="Enter password">
+      <button onclick="validatePassword()">Access</button>
+      <p id="errorMsg" style="color:red; display:none;">Incorrect password!</p>
+    </div>
+  </div>
+
+  <!-- 🌐 Contenido principal oculto hasta introducir contraseña -->
+  <div id="mainContent" style="display:none;">
+
+    <button class="projects-btn" id="projectsBtn">Projects</button>
+    <button class="home-btn" id="homeBtn">🏠</button>
+
+    <div class="sidebar" id="sidebar">
+      <h3>Software</h3>
+      <button onclick="loadCategory('CST')">CST Studio</button>
+      <button onclick="loadCategory('ADS')">ADS</button>
+      <button onclick="loadCategory('HFSS')">Ansys HFSS</button>
+      <button onclick="loadCategory('Altium')">Altium Designer</button>
+    </div>
+
+    <div class="container" id="mainContainer">
+      <header>
+        <div class="avatar">
+          <img src="private_assets/images/Others/IvánÁlvarezPuerta.jpg" alt="Foto de Iván Álvarez Puerta">
+        </div>
+        <div>
+          <h1>Iván Álvarez Puerta</h1>
+          <p class="lead">Master's student in Telecommunication Engineering — RF & Embedded Systems · PCB & Antenna Design</p>
+          <div style="color:var(--muted)">ivanalvarez2003@gmail.com · +34 664 057 324</div>
+        </div>
+      </header>
+
+      <div class="grid">
+        <main>
+          <section class="card">
+            <div class="section-title">About me</div>
+            <p>Proactive and results-oriented Telecommunications Engineering master's student with hands-on experience in RF engineering, antenna design, PCB and embedded firmware development. Experienced working in multidisciplinary teams (50+ members) delivering high-quality technical solutions for motorsport and academic projects. Motivated to learn and contribute to innovative initiatives in RF, microwave and embedded systems.</p>
+          </section>
+          <section class="card" style="margin-top:16px">
+            <div class="section-title">Experience</div>
+            <p><strong>Electronics Engineer — BCN eMotorsport (2023–2025)</strong><br>
+              Development of a race car for student engineering competitions across Europe as part of a 50+ member team. Responsible for embedded electronics design (Altium), STM32 firmware development using HAL libraries and FreeRTOS, and system validation. Competed at Red Bull Ring (Austria), Circuit de Barcelona-Catalunya (Spain) and Hockenheimring (Germany), with awards including Best Autonomous Team in Spain and Top Spanish Team placements.</p>
+          </section>
+          <section class="card" style="margin-top:16px">
+            <div class="section-title">Education</div>
+            <ul style="list-style:none;padding:0;margin:0;color:var(--muted)">
+              <li><strong>Master's Degree in Telecommunication Engineering</strong> — ETSETB UPC, Barcelona (2025 — present)</li>
+              <li><strong>Bachelor’s Degree in Telecommunication Technologies and Services Engineering</strong> — ETSETB UPC, Barcelona (2021 — 2025)</li>
+            </ul>
+          </section>
+        </main>
+        <aside>
+          <div class="card">
+            <div class="section-title">Skills</div>
+            <ul class="skills-list">
+              <li>Altium Designer</li>
+              <li>STM32 HAL & FreeRTOS</li>
+              <li>C Programming</li>
+              <li>CST Studio Suite</li>
+              <li>Keysight ADS</li>
+              <li>VNA & Spectrum Analyzer</li>
+              <li>MATLAB</li>
+              <li>VHDL</li>
+            </ul>
+          </div>
+          <div class="card" style="margin-top:16px">
+            <div class="section-title">Languages</div>
+            <ul style="list-style:none;padding:0;margin:0;color:var(--muted)">
+              <li>Spanish — Native</li>
+              <li>Catalan — Native</li>
+              <li>English — Professional working proficiency</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div id="projectsView">
+      <div class="program-box" id="programBox"></div>
+      <div class="projects-box">
+        <div class="section-title">Projects</div>
+        <div class="projects-grid" id="projectsContainer"></div>
+      </div>
+    </div>
+    <button class="close-btn" id="closeModal" aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <button class="close-btn" id="closeModal">×</button>
+          <iframe id="pdfViewer" src="" 
+          style="width:95%; height:460px; border:none; border-radius:8px;">
+          </iframe>   
+        <a class="download-btn" id="downloadZip" href="#" download>Download ZIP</a>
+      </div>
+    </div>
+
+  <script>
+    /* 🔐 Password system */
+    function validatePassword() {
+      const input = document.getElementById("passwordInput").value;
+      const modal = document.getElementById("passwordModal");
+      const content = document.getElementById("mainContent");
+      const error = document.getElementById("errorMsg");
+
+      if (input === "HOLA") {
+        modal.style.display = "none";
+        content.style.display = "block";
+        document.body.style.overflow = "auto";
+      } else {
+        error.style.display = "block";
+        document.getElementById("passwordInput").value = "";
+      }
+    }
+
+    window.onload = function () {
+      document.body.style.overflow = "hidden";
+    };
+
+    /* Original project JS */
+    const sidebar = document.getElementById('sidebar');
+    const btn = document.getElementById('projectsBtn');
+    const homeBtn = document.getElementById('homeBtn');
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+    const pdfViewer = document.getElementById('pdfViewer');
+    const downloadZip = document.getElementById('downloadZip');
+    const projectsContainer = document.getElementById('projectsContainer');
+    const mainContainer = document.getElementById('mainContainer');
+    const projectsView = document.getElementById('projectsView');
+    const programBox = document.getElementById('programBox');
+
+    btn.onclick = () => sidebar.classList.toggle('show');
+    homeBtn.onclick = () => showHome();
+
+    const projects = {
+      CST: {
+        logo: 'private_assets/images/CST/cst-1.png',
+        description: 'Projects focused on antenna design, array optimization, and RF system simulations.',
+        items: [
+          { 
+            title: 'Patch Antenna Design', 
+            desc: 'Simulation of a patch antenna array', 
+            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_CST1/preview',
+            zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_CST1',
+            image: 'private_assets/images/CST/CST-PatchAntenna.png' 
+          },
+          { 
+            title: 'Antenna Optimization', 
+            desc: 'Optimizing radiation patterns', 
+            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_CST2/preview',
+            zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_CST2',
+            image: 'private_assets/images/CST/cst-3.jpg' 
+          }
+        ]
+      },
+      ADS: {
+        logo: 'private_assets/images/ADS/ADS-1.jpg',
+        description: 'Projects involving RF and microwave circuit design, such as amplifiers and filters.',
+        items: [
+          { 
+            title: 'Microwave Amplifier', 
+            desc: 'S-parameter analysis', 
+            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ADS/preview',
+            zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_ADS',
+            image: 'private_assets/images/ADS/ADS-1.jpg' 
+          }
+        ]
+      },
+      HFSS: {
+        logo: 'private_assets/images/Ansys/Ansys-1.png',
+        description: 'Electromagnetic simulations for antenna and PCB layout validation.',
+        items: [
+          { 
+            title: '3D Antenna Model', 
+            desc: 'Simulation and optimization using Ansys HFSS', 
+            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_HFSS/preview',
+            zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_HFSS',
+            image: 'private_assets/images/Ansys/Ansys-1.png' 
+          }
+        ]
+      },
+      Altium: {
+        logo: 'private_assets/images/Altium/altium-1.png',
+        description: 'PCB design projects, including embedded systems and RF boards.',
+        items: [
+          { 
+            title: 'Power Distribution Unit V2', 
+            desc: 'Design of a power distribution unit for a Formula Student car', 
+            pdf: 'https://drive.google.com/file/d/1ugPq95SpNnXLKPepvnIcP2ZrdqooAd6a/preview',
+            zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_ALTIUM_V2',
+            image: 'private_assets/images/Altium/Altium-PDU.png' 
+          },
+          { 
+            title: 'Power Distribution Unit V1', 
+            desc: 'First prototype of the Formula Student car power distribution system', 
+            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ALTIUM_V1/preview',
+            zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_ALTIUM_V1',
+            image: 'private_assets/images/Altium/Altium-PDUV1.png' 
+          }
+        ]
+      }
+    };
+
+
+
+
+    function loadCategory(name) {
+      const data = projects[name];
+      programBox.innerHTML = `
+        <div class="card">
+          <div><img src="${data.logo}" alt="${name} logo"></div>
+          <div>
+            <h2>${name} Projects</h2>
+            <p>${data.description}</p>
+          </div>
+        </div>`;
+      projectsContainer.innerHTML = data.items.map(p => `
+        <div class="project-card" onclick="openProject('${p.pdf}', '${p.zip}')">
+          <img src="${p.image}" alt="${p.title}">
+          <h4>${p.title}</h4>
+          <p>${p.desc}</p>
+        </div>`).join('');
+      mainContainer.style.display = 'none';
+      projectsView.style.display = 'block';
+      sidebar.classList.remove('show');
+      homeBtn.style.display = 'flex';
+    }
+
+    function openProject(pdf, zip) {
+      modal.classList.add('show');
+      pdfViewer.src = pdf;
+      downloadZip.href = zip;
+    }
+
+    closeModal.onclick = () => {
+      modal.classList.remove('show');
+      pdfViewer.src = '';
+    };
+
+    function showHome() {
+      projectsView.style.display = 'none';
+      mainContainer.style.display = 'block';
+      homeBtn.style.display = 'none';
+    }
+  </script>
+
+</body>
+
+</html>
