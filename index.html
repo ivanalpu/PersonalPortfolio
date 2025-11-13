@@ -364,6 +364,43 @@
       font-weight: 600;
       width: 100%;
     }
+    .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 14px;
+    margin-top: 10px;
+  }
+
+  .skill-item {
+    background: #eef1f7;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+    transition: all 0.25s ease;
+  }
+
+  .skill-item:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: #3457d5;
+    color: white;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+
+  .skill-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 8px;
+    pointer-events: none;
+  }
+
+  .skill-item span {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+  }
 
     .password-box button:hover {
       background: #2848c2;
@@ -442,19 +479,27 @@
           </section>
         </main>
         <aside>
-          <div class="card">
-            <div class="section-title">Skills</div>
-            <ul class="skills-list">
-              <li>Altium Designer</li>
-              <li>STM32 HAL & FreeRTOS</li>
-              <li>C Programming</li>
-              <li>CST Studio Suite</li>
-              <li>Keysight ADS</li>
-              <li>VNA & Spectrum Analyzer</li>
-              <li>MATLAB</li>
-              <li>VHDL</li>
-            </ul>
+        <div class="card">
+          <div class="section-title">Main Tools</div>
+          <div class="skills-grid">
+            <div class="skill-item" onclick="loadCategory('Altium')">
+              <img src="private_assets/images/Altium/altium-1.png" alt="Altium Designer">
+              <span>Altium Designer</span>
+            </div>
+            <div class="skill-item" onclick="loadCategory('CST')">
+              <img src="private_assets/images/CST/cst-1.png" alt="CST Studio">
+              <span>CST Studio Suite</span>
+            </div>
+            <div class="skill-item" onclick="loadCategory('HFSS')">
+              <img src="private_assets/images/Ansys/Ansys-1.png" alt="ANSYS HFSS">
+              <span>ANSYS HFSS</span>
+            </div>
+            <div class="skill-item" onclick="loadCategory('ADS')">
+              <img src="private_assets/images/ADS/ADS-1.jpg" alt="Keysight ADS">
+              <span>Keysight ADS</span>
+            </div>
           </div>
+        </div>
           <div class="card" style="margin-top:16px">
             <div class="section-title">Languages</div>
             <ul style="list-style:none;padding:0;margin:0;color:var(--muted)">
@@ -581,6 +626,13 @@
             pdf: 'https://drive.google.com/file/d/1ugPq95SpNnXLKPepvnIcP2ZrdqooAd6a/preview',
             zip: 'https://drive.google.com/uc?export=download&197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr',
             image: '/PersonalPortfolio/private_assets/images/Altium/Altium-PDU.png' 
+          },
+          { 
+            title: 'Brake System Plausibility Device', 
+            desc: 'Design of a Brake System Plausibility Device PCB for a Formula Student car', 
+            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ALTIUM_V1/preview',
+            zip: 'https://drive.google.com/uc?export=download&id=1S8EE3zeXqmuoEgpjdVAjtBTDm4nLEasJ',
+            image: '/PersonalPortfolio/private_assets/images/Altium/Altium-PDUV1.png' 
           },
           { 
             title: 'Power Distribution Unit V1', 
