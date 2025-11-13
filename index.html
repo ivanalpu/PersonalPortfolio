@@ -353,23 +353,6 @@
       font-size: 14px;
     }
 
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 14px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #333;
-      transition: transform 0.25s ease, color 0.25s ease;
-    }
-
-    .close-btn:hover {
-      transform: scale(1.2) rotate(90deg);
-      color: #d7263d; /* rojo elegante */
-    }
-
-
     .password-box button {
       background: var(--accent);
       color: white;
@@ -443,12 +426,12 @@
         <main>
           <section class="card">
             <div class="section-title">About me</div>
-            <p>Proactive and results-oriented Telecommunications Engineering master's student with hands-on experience in RF engineering, antenna design, PCB and embedded firmware development. Experienced working in multidisciplinary teams (50+ members) delivering high-quality technical solutions for motorsport and academic projects. Motivated to learn and contribute to innovative initiatives in RF, microwave and embedded systems.</p>
+            <p style="text-align: justify; text-align-last: justify;">Proactive and results-oriented Telecommunications Engineering master's student with hands-on experience in RF engineering, antenna design, PCB and embedded firmware development. Experienced working in multidisciplinary teams (50+ members) delivering high-quality technical solutions for motorsport and academic projects. Motivated to learn and contribute to innovative initiatives in RF, microwave and embedded systems.</p>
           </section>
           <section class="card" style="margin-top:16px">
             <div class="section-title">Experience</div>
             <p><strong>Electronics Engineer — BCN eMotorsport (2023–2025)</strong><br>
-              Development of a race car for student engineering competitions across Europe as part of a 50+ member team. Responsible for embedded electronics design (Altium), STM32 firmware development using HAL libraries and FreeRTOS, and system validation. Competed at Red Bull Ring (Austria), Circuit de Barcelona-Catalunya (Spain) and Hockenheimring (Germany), with awards including Best Autonomous Team in Spain and Top Spanish Team placements.</p>
+              <p style="text-align: justify; ">Development of a race car for student engineering competitions across Europe as part of a 50+ member team. Responsible for embedded electronics design (Altium), STM32 firmware development using HAL libraries and FreeRTOS, and system validation. Competed at Red Bull Ring (Austria), Circuit de Barcelona-Catalunya (Spain) and Hockenheimring (Germany), with awards including Best Autonomous Team in Spain and Top Spanish Team placements.</p>
           </section>
           <section class="card" style="margin-top:16px">
             <div class="section-title">Education</div>
@@ -491,12 +474,6 @@
         <div class="projects-grid" id="projectsContainer"></div>
       </div>
     </div>
-    <button class="close-btn" id="closeModal" aria-label="Close">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </svg>
-    </button>
 
     <div class="modal" id="modal">
       <div class="modal-content">
