@@ -575,56 +575,32 @@
 
     _0xroot["validatePassword"] = function () {
         try {
-            // Obtener elementos
             const _inputEl = document.getElementById(_0x1a9f(1));
             const _modal = document.getElementById(_0x1a9f(3));
             const _content = document.getElementById(_0x1a9f(4));
             const _err = document.getElementById(_0x1a9f(5));
 
-            // Si faltan elementos mostrar aviso en consola y salir
-            if (!_inputEl || !_modal || !_content || !_err) {
-                console.error("validatePassword: falta algún elemento. IDs comprobados:",
-                    _0x1a9f(1), _0x1a9f(3), _0x1a9f(4), _0x1a9f(5));
-                return;
-            }
+            if (!_inputEl || !_modal || !_content || !_err) return;
 
             const _input = _inputEl[_0x1a9f(2)];
 
             if (_input === _0x1a9f(13)) {
                 _modal[_0x1a9f(7)][_0x1a9f(6)] = _0x1a9f(8);
                 _content[_0x1a9f(7)][_0x1a9f(6)] = _0x1a9f(9);
-                // CORRECCIÓN: modificar el style.overflow del body
                 document[_0x1a9f(10)][_0x1a9f(7)][_0x1a9f(11)] = _0x1a9f(12);
             } else {
                 _err[_0x1a9f(7)][_0x1a9f(6)] = _0x1a9f(9);
                 _inputEl[_0x1a9f(2)] = "";
             }
 
-        } catch (e) {
-            console.error(e);
-        }
+        } catch (e) {}
     };
-
-    // Auto-protección (anti-debug)
-    // Si prefieres probar sin recargas, comenta este bloque.
-    setInterval(function () {
-        const _0xdbg = /debugger|console|profile|inspect/gi;
-        try {
-            if (_0xdbg.test(Function.prototype.toString.call(console.log))) {
-                window.location.reload();
-            }
-        } catch (e) {
-            // no hacer nada si falla el chequeo
-        }
-    }, 500);
 
 })();
 </script>
 
-
-   window.onload = function () {
-  if (document.getElementById("mainContent").style.display !== "block")
-      document.body.style.overflow = "hidden";
+window.onload = function () {
+  document.body.style.overflow = "hidden";
 };
 
     /* Original project JS */
