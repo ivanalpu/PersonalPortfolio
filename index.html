@@ -700,17 +700,12 @@
       }
     };
 
-   function loadCategory(name) {
+ function loadCategory(name) {
   const data = projects[name];
+  if (!data) return;
 
-  if (!data) return; // seguridad
-
-  const beginnerProjects = data.items.filter(p => p.level === "Beginner");
-  const intermediateProjects = data.items.filter(p => p.level === "Intermediate");
-  const advancedProjects = data.items.filter(p => p.level === "Advanced");
-
-  // Llenamos programBox con los proyectos filtrados
-  programBox.innerHTML = `
+  const levels = ['Beginner', 'Intermediate', 'Advanced'];
+  let html = `
     <div class="card">
       <div><img src="${data.logo}" alt="${name} logo"></div>
       <div>
@@ -718,92 +713,69 @@
         <p>${data.description}</p>
       </div>
     </div>
-
-    <div class="level-container">
-
-      <!-- Beginner -->
-      <div class="level-dropdown">
-        <div class="level-header" onclick="toggleLevelList('${name}-beg')">
-          Beginner <span id="arrow-${name}-beg" class="level-arrow">▼</span>
-        </div>
-        <div id="list-${name}-beg" class="level-list">
-          ${beginnerProjects.length > 0 ? beginnerProjects.map(p => `
-            <div class="project-card" onclick="openProject('${p.pdf}', '${p.zip}')">
-              <img src="${p.image}" alt="${p.title}">
-              <h4>${p.title}</h4>
-              <p>${p.desc}</p>
-            </div>
-          `).join("") : `<p style="color:#777;margin-left:10px;">No beginner projects yet.</p>`}
-        </div>
-      </div>
-
-      <!-- Intermediate -->
-      <div class="level-dropdown">
-        <div class="level-header" onclick="toggleLevelList('${name}-int')">
-          Intermediate <span id="arrow-${name}-int" class="level-arrow">▼</span>
-        </div>
-        <div id="list-${name}-int" class="level-list">
-          ${intermediateProjects.length > 0 ? intermediateProjects.map(p => `
-            <div class="project-card" onclick="openProject('${p.pdf}', '${p.zip}')">
-              <img src="${p.image}" alt="${p.title}">
-              <h4>${p.title}</h4>
-              <p>${p.desc}</p>
-            </div>
-          `).join("") : `<p style="color:#777;margin-left:10px;">No intermediate projects yet.</p>`}
-        </div>
-      </div>
-
-      <!-- Advanced -->
-      <div class="level-dropdown">
-        <div class="level-header" onclick="toggleLevelList('${name}-adv')">
-          Advanced <span id="arrow-${name}-adv" class="level-arrow">▼</span>
-        </div>
-        <div id="list-${name}-adv" class="level-list">
-          ${advancedProjects.length > 0 ? advancedProjects.map(p => `
-            <div class="project-card" onclick="openProject('${p.pdf}', '${p.zip}')">
-              <img src="${p.image}" alt="${p.title}">
-              <h4>${p.title}</h4>
-              <p>${p.desc}</p>
-            </div>
-          `).join("") : `<p style="color:#777;margin-left:10px;">No advanced projects yet.</p>`}
-        </div>
-      </div>
-
-    </div>
   `;
 
-  // Mostrar la vista de proyectos y ocultar la home
+  html += `<div class="level-container">`;
+
+  levels.forEach(level => {
+    const items = data.items.filter(p => p.level === level);
+    html += `
+      <div class="level-dropdown">
+        <div class="level-header">
+          ${level} <span class="level-arrow">▼</span>
+        </div>
+        <div class="level-list">
+          ${items.length > 0 ? items.map(p => `
+            <div class="project-card" onclick="openProject('${p.pdf}', '${p.zip}')">
+              <img src="${p.image}" alt="${p.title}">
+              <h4>${p.title}</h4>
+              <p>${p.desc}</p>
+            </div>
+          `).join('') : `<p style="color:#777;margin-left:10px;">No ${level.toLowerCase()} projects yet.</p>`}
+        </div>
+      </div>
+    `;
+  });
+
+  html += `</div>`;
+
+  programBox.innerHTML = html;
   mainContainer.style.display = "none";
   projectsView.style.display = "block";
   sidebar.classList.remove("show");
   homeBtn.style.display = "flex";
 }
 
-function toggleLevelList(id) {
-  const list = document.getElementById(`list-${id}`);
-  const arrow = document.getElementById(`arrow-${id}`);
+/* Toggle dinámico de niveles */
+document.addEventListener('click', function(e) {
+  if(e.target.classList.contains('level-header') || e.target.closest('.level-header')) {
+    const header = e.target.classList.contains('level-header') ? e.target : e.target.closest('.level-header');
+    const dropdown = header.closest('.level-dropdown');
+    const list = dropdown.querySelector('.level-list');
+    const arrow = header.querySelector('.level-arrow');
 
-  if (list && arrow) {
-    list.classList.toggle("show");
-    arrow.classList.toggle("open");
+    list.classList.toggle('show');
+    arrow.classList.toggle('open');
   }
+});
+
+function openProject(pdf, zip) {
+  modal.classList.add('show');
+  pdfViewer.src = pdf;
+  downloadZip.href = zip;
 }
-    function openProject(pdf, zip) {
-      modal.classList.add('show');
-      pdfViewer.src = pdf;
-      downloadZip.href = zip;
-    }
 
-    closeModal.onclick = () => {
-      modal.classList.remove('show');
-      pdfViewer.src = '';
-    };
+closeModal.onclick = () => {
+  modal.classList.remove('show');
+  pdfViewer.src = '';
+};
 
-    function showHome() {
-      projectsView.style.display = 'none';
-      mainContainer.style.display = 'block';
-      homeBtn.style.display = 'none';
-    }
+function showHome() {
+  projectsView.style.display = 'none';
+  mainContainer.style.display = 'block';
+  homeBtn.style.display = 'none';
+}
+
   </script>
 
 </body>
