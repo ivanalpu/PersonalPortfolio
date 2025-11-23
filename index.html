@@ -401,6 +401,46 @@
     font-size: 14px;
     font-weight: 600;
   }
+  .level-dropdown {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.level-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 8px;
+}
+
+.level-header:hover {
+  background: #eef1f7;
+  border-radius: 8px;
+}
+
+.level-list {
+  display: none;
+  margin-top: 8px;
+  animation: fadeIn 0.3s ease;
+}
+
+.level-list.show {
+  display: block;
+}
+
+.level-arrow {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.level-arrow.open {
+  transform: rotate(180deg);
+}
 
     .password-box button:hover {
       background: #2848c2;
@@ -576,6 +616,7 @@
           { 
             title: 'Patch Antenna Design', 
             desc: 'Simulation of a patch antenna array', 
+            level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_CST1/preview',
             zip: 'https://drive.google.com/uc?export=download&1j3xjaE6HDVxhxWdoKWV2OuGcf3tPUwiq',
             image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/CST-PatchAntenna.png' 
@@ -584,6 +625,7 @@
             title: 'Antenna Optimization', 
             desc: 'Optimizing radiation patterns', 
             pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_CST2/preview',
+            level: 'Beginner',
             zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_CST2',
             image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/cst-3.jpg' 
           }
@@ -596,7 +638,8 @@
         items: [
           { 
             title: 'Microwave Amplifier', 
-            desc: 'S-parameter analysis', 
+            desc: 'S-parameter analysis',
+            level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ADS/preview',
             zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_ADS',
             image: '/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg' 
@@ -609,7 +652,8 @@
         items: [
           { 
             title: '3D Antenna Model', 
-            desc: 'Simulation and optimization using Ansys HFSS', 
+            desc: 'Simulation and optimization using Ansys HFSS',
+            level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_HFSS/preview',
             zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_HFSS',
             image: '/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png' 
@@ -622,21 +666,24 @@
         items: [
           { 
             title: 'Power Distribution Unit V2', 
-            desc: 'Design of a power distribution unit for a Formula Student car', 
+            desc: 'Design of a power distribution unit for a Formula Student car',
+            level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/1ugPq95SpNnXLKPepvnIcP2ZrdqooAd6a/preview',
             zip: 'https://drive.google.com/uc?export=download&197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr',
             image: '/PersonalPortfolio/private_assets/images/Altium/Altium-PDU.png' 
           },
           { 
             title: 'Brake System Plausibility Device', 
-            desc: 'Design of a Brake System Plausibility Device PCB for a Formula Student car', 
+            desc: 'Design of a Brake System Plausibility Device PCB for a Formula Student car',
+            level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ALTIUM_V1/preview',
             zip: 'https://drive.google.com/uc?export=download&id=1S8EE3zeXqmuoEgpjdVAjtBTDm4nLEasJ',
             image: '/PersonalPortfolio/private_assets/images/Altium/Altium-PDUV1.png' 
           },
           { 
             title: 'Power Distribution Unit V1', 
-            desc: 'Design of a power distribution unit for a Formula Student car', 
+            desc: 'Design of a power distribution unit for a Formula Student car',
+            level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ALTIUM_V1/preview',
             zip: 'https://drive.google.com/uc?export=download&id=1S8EE3zeXqmuoEgpjdVAjtBTDm4nLEasJ',
             image: '/PersonalPortfolio/private_assets/images/Altium/Altium-PDUV1.png' 
@@ -649,26 +696,52 @@
 
 
     function loadCategory(name) {
-      const data = projects[name];
-      programBox.innerHTML = `
-        <div class="card">
-          <div><img src="${data.logo}" alt="${name} logo"></div>
-          <div>
-            <h2>${name} Projects</h2>
-            <p>${data.description}</p>
+  const data = projects[name];
+
+  // Filtramos por nivel (todos Beginner por ahora)
+  const beginnerProjects = data.items.filter(p => p.level === "Beginner");
+
+  programBox.innerHTML = `
+    <div class="card">
+      <div><img src="${data.logo}" alt="${name} logo"></div>
+      <div>
+        <h2>${name} Projects</h2>
+        <p>${data.description}</p>
+      </div>
+    </div>
+
+    <div class="level-dropdown">
+      <div class="level-header" onclick="toggleLevelList('${name}')">
+        Beginner <span id="arrow-${name}" class="level-arrow">▼</span>
+      </div>
+      <div id="list-${name}" class="level-list">
+        ${beginnerProjects.map(p => `
+          <div class="project-card" onclick="openProject('${p.pdf}', '${p.zip}')">
+            <img src="${p.image}" alt="${p.title}">
+            <h4>${p.title}</h4>
+            <p>${p.desc}</p>
           </div>
-        </div>`;
-      projectsContainer.innerHTML = data.items.map(p => `
-        <div class="project-card" onclick="openProject('${p.pdf}', '${p.zip}')">
-          <img src="${p.image}" alt="${p.title}">
-          <h4>${p.title}</h4>
-          <p>${p.desc}</p>
-        </div>`).join('');
-      mainContainer.style.display = 'none';
-      projectsView.style.display = 'block';
-      sidebar.classList.remove('show');
-      homeBtn.style.display = 'flex';
-    }
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  // limpiamos vista previa
+  projectsContainer.innerHTML = "";
+  mainContainer.style.display = 'none';
+  projectsView.style.display = 'block';
+  sidebar.classList.remove('show');
+  homeBtn.style.display = 'flex';
+}
+
+function toggleLevelList(name) {
+  const list = document.getElementById(`list-${name}`);
+  const arrow = document.getElementById(`arrow-${name}`);
+
+  list.classList.toggle("show");
+  arrow.classList.toggle("open");
+}
+
 
     function openProject(pdf, zip) {
       modal.classList.add('show');
