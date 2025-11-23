@@ -700,14 +700,16 @@
       }
     };
 
-    function loadCategory(name) {
+   function loadCategory(name) {
   const data = projects[name];
 
-  // Filtrar por nivel
+  if (!data) return; // seguridad
+
   const beginnerProjects = data.items.filter(p => p.level === "Beginner");
   const intermediateProjects = data.items.filter(p => p.level === "Intermediate");
   const advancedProjects = data.items.filter(p => p.level === "Advanced");
 
+  // Llenamos programBox con los proyectos filtrados
   programBox.innerHTML = `
     <div class="card">
       <div><img src="${data.logo}" alt="${name} logo"></div>
@@ -770,6 +772,7 @@
     </div>
   `;
 
+  // Mostrar la vista de proyectos y ocultar la home
   mainContainer.style.display = "none";
   projectsView.style.display = "block";
   sidebar.classList.remove("show");
@@ -780,14 +783,11 @@ function toggleLevelList(id) {
   const list = document.getElementById(`list-${id}`);
   const arrow = document.getElementById(`arrow-${id}`);
 
-  list.classList.toggle("show");
-  arrow.classList.toggle("open");
+  if (list && arrow) {
+    list.classList.toggle("show");
+    arrow.classList.toggle("open");
+  }
 }
-
-
-
-
-
     function openProject(pdf, zip) {
       modal.classList.add('show');
       pdfViewer.src = pdf;
