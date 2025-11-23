@@ -425,17 +425,15 @@
 }
 
 .level-list {
-  /* oculto por defecto */
-  display: none;
+  display: none; /* oculto por defecto */
   margin-top: 8px;
-  animation: fadeIn 0.3s ease;
-
-  /* NUEVO: grid de tarjetas (2 por fila si hay espacio) */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
   align-items: start;
+
+  /* grid solo cuando se muestra */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
+
 
 /* cuando está abierto mostramos la grid */
 .level-list.show {
