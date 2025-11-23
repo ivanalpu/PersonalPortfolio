@@ -622,9 +622,10 @@
 </script>
 
 
-    window.onload = function () {
+   window.onload = function () {
+  if (document.getElementById("mainContent").style.display !== "block")
       document.body.style.overflow = "hidden";
-    };
+};
 
     /* Original project JS */
     const sidebar = document.getElementById('sidebar');
