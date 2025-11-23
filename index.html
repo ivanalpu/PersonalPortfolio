@@ -483,10 +483,12 @@
           <div class="section-title">Main Tools</div>
           <div class="skills-grid">
             <div class="skill-item" onclick="loadCategory('Altium')">
+              <img src="private_assets/images/Altium/altium-1.png" alt="Altium Designer">
               <img src="/PersonalPortfolio/private_assets/images/Altium/Altium-1.png" alt="Altium Designer">
               <span>Altium Designer</span>
             </div>
             <div class="skill-item" onclick="loadCategory('CST')">
+              <img src="private_assets/images/CST/cst-1.png" alt="CST Studio">
               <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/CST-1.png" alt="CST Studio">
               <span>CST Studio Suite</span>
             </div>
@@ -530,78 +532,27 @@
       </div>
     </div>
 
-<script>
-(function () {
-    const _0x4e5b = (function () {
-        const _0x3d2c = [
-            "c2VsZWN0b3I=",
-            "cGFzc3dvcmRJbnB1dA==",
-            "dmFsdWU=",
-            "cGFzc3dvcmRNb2RhbA==",
-            "bWFpbkNvbnRlbnQ=",
-            "ZXJyb3JNc2c=",
-            "ZGlzcGxheQ==",
-            "c3R5bGU=",
-            "bm9uZQ==",
-            "YmxvY2s=",
-            "Ym9keQ==",
-            "b3ZlcmZsb3c=",
-            "YXV0bw==",
-            "SE9MQQ=="
-        ];
-        return function (_0x1fd1) {
-            return atob(_0x3d2c[_0x1fd1]);
-        };
-    })();
+  <script>
+    /* 🔐 Password system */
+    function validatePassword() {
+      const input = document.getElementById("passwordInput").value;
+      const modal = document.getElementById("passwordModal");
+      const content = document.getElementById("mainContent");
+      const error = document.getElementById("errorMsg");
 
-    function _0x1a9f(_0x55a1, _0x412e) {
-        return _0x1a9f = function (_0x4ee7, _0x525d) {
-            _0x4ee7 = _0x4ee7 - 0;
-            let _0x337c = _0x4e5b(_0x4ee7);
-            return _0x337c;
-        }, _0x1a9f(_0x55a1, _0x412e);
+      if (input === "HOLA") {
+        modal.style.display = "none";
+        content.style.display = "block";
+        document.body.style.overflow = "auto";
+      } else {
+        error.style.display = "block";
+        document.getElementById("passwordInput").value = "";
+      }
     }
 
-    const _0xdead = function () {
-        try {
-            const _0xabc = Function("return (function() {}.constructor(\"return this\")());");
-            return _0xabc();
-        } catch (_0xerr) {
-            return window;
-        }
+    window.onload = function () {
+      document.body.style.overflow = "hidden";
     };
-
-    const _0xroot = _0xdead();
-
-    _0xroot["validatePassword"] = function () {
-        try {
-            const _inputEl = document.getElementById(_0x1a9f(1));
-            const _modal = document.getElementById(_0x1a9f(3));
-            const _content = document.getElementById(_0x1a9f(4));
-            const _err = document.getElementById(_0x1a9f(5));
-
-            if (!_inputEl || !_modal || !_content || !_err) return;
-
-            const _input = _inputEl[_0x1a9f(2)];
-
-            if (_input === _0x1a9f(13)) {
-                _modal[_0x1a9f(7)][_0x1a9f(6)] = _0x1a9f(8);
-                _content[_0x1a9f(7)][_0x1a9f(6)] = _0x1a9f(9);
-                document[_0x1a9f(10)][_0x1a9f(7)][_0x1a9f(11)] = _0x1a9f(12);
-            } else {
-                _err[_0x1a9f(7)][_0x1a9f(6)] = _0x1a9f(9);
-                _inputEl[_0x1a9f(2)] = "";
-            }
-
-        } catch (e) {}
-    };
-
-})();
-</script>
-
-window.onload = function () {
-  document.body.style.overflow = "hidden";
-};
 
     /* Original project JS */
     const sidebar = document.getElementById('sidebar');
