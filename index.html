@@ -489,12 +489,14 @@
     <button class="home-btn" id="homeBtn">🏠</button>
 
     <div class="sidebar" id="sidebar">
-      <h3>Software</h3>
-      <button onclick="loadCategory('CST')">CST Studio</button>
-      <button onclick="loadCategory('ADS')">ADS</button>
-      <button onclick="loadCategory('HFSS')">Ansys HFSS</button>
-      <button onclick="loadCategory('Altium')">Altium Designer</button>
+      <h3>Projects</h3>
+        <button onclick="loadCategory('CST')">CST Studio</button>
+        <button onclick="loadCategory('ADS')">ADS</button>
+        <button onclick="loadCategory('HFSS')">Ansys HFSS</button>
+        <button onclick="loadCategory('Altium')">Altium Designer</button>
     </div>
+
+
 
     <div class="container" id="mainContainer">
       <header>
@@ -514,10 +516,10 @@
             <div class="section-title">About me</div>
             <p style="text-align: justify; text-align-last: justify;">Proactive and results-oriented Telecommunications Engineering master's student with hands-on experience in RF engineering, antenna design, PCB and embedded firmware development. Experienced working in multidisciplinary teams (50+ members) delivering high-quality technical solutions for motorsport and academic projects. Motivated to learn and contribute to innovative initiatives in RF, microwave and embedded systems.</p>
           </section>
-          <section class="card" style="margin-top:16px">
+          <section class="card" style="margin-top:16px; cursor:pointer;" onclick="openExperience()">
             <div class="section-title">Experience</div>
             <p><strong>Electronics Engineer — BCN eMotorsport (2023–2025)</strong><br>
-              <p style="text-align: justify; ">Development of a race car for student engineering competitions across Europe as part of a 50+ member team. Responsible for embedded electronics design (Altium), STM32 firmware development using HAL libraries and FreeRTOS, and system validation. Competed at Red Bull Ring (Austria), Circuit de Barcelona-Catalunya (Spain) and Hockenheimring (Germany), with awards including Best Autonomous Team in Spain and Top Spanish Team placements.</p>
+            <p style="text-align: justify;">Development of a race car for student engineering competitions...</p>
           </section>
           <section class="card" style="margin-top:16px">
             <div class="section-title">Education</div>
@@ -532,7 +534,7 @@
           <div class="section-title">Main Tools</div>
           <div class="skills-grid">
             <div class="skill-item" onclick="loadCategory('Altium')">
-              <img src="/PersonalPortfolio/private_assets/images/Altium/Altium-1.png" alt="Altium Designer">
+              <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-1.png" alt="Altium Designer">
               <span>Altium Designer</span>
             </div>
             <div class="skill-item" onclick="loadCategory('CST')">
@@ -540,11 +542,11 @@
               <span>CST Studio Suite</span>
             </div>
             <div class="skill-item" onclick="loadCategory('HFSS')">
-              <img src="private_assets/images/Ansys/Ansys-1.png" alt="ANSYS HFSS">
+              <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png" alt="ANSYS HFSS">
               <span>ANSYS HFSS</span>
             </div>
             <div class="skill-item" onclick="loadCategory('ADS')">
-              <img src="private_assets/images/ADS/ADS-1.jpg" alt="Keysight ADS">
+              <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg" alt="Keysight ADS">
               <span>Keysight ADS</span>
             </div>
           </div>
@@ -563,6 +565,9 @@
 
     <div id="projectsView">
       <div class="program-box" id="programBox"></div>
+    </div>
+    <div id="experienceView" style="display:none; max-width:1100px; margin:40px auto; padding:20px;">
+      <div id="experienceBox"></div>
     </div>
 
 
@@ -639,7 +644,7 @@
       },
 
       ADS: {
-        logo: '/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg',
+        logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg',
         description: 'Projects involving RF and microwave circuit design, such as amplifiers and filters.',
         items: [
           { 
@@ -648,12 +653,12 @@
             level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ADS/preview',
             zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_ADS',
-            image: '/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg' 
+            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg' 
           }
         ]
       },
       HFSS: {
-        logo: '/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png',
+        logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png',
         description: 'Electromagnetic simulations for antenna and PCB layout validation.',
         items: [
           { 
@@ -662,12 +667,12 @@
             level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_HFSS/preview',
             zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_HFSS',
-            image: '/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png' 
+            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png' 
           }
         ]
       },
       Altium: {
-        logo: '/PersonalPortfolio/private_assets/images/Altium/Altium-1.png',
+        logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-1.png',
         description: 'PCB design projects, including embedded systems and RF boards.',
         items: [
           { 
@@ -676,7 +681,7 @@
             level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/1ugPq95SpNnXLKPepvnIcP2ZrdqooAd6a/preview',
             zip: 'https://drive.google.com/uc?export=download&197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr',
-            image: '/PersonalPortfolio/private_assets/images/Altium/Altium-PDU.png' 
+            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDU.png' 
           },
           { 
             title: 'Brake System Plausibility Device', 
@@ -684,7 +689,7 @@
             level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ALTIUM_V1/preview',
             zip: 'https://drive.google.com/uc?export=download&id=1S8EE3zeXqmuoEgpjdVAjtBTDm4nLEasJ',
-            image: '/PersonalPortfolio/private_assets/images/Altium/Altium-PDUV1.png' 
+            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDUV1.png' 
           },
           { 
             title: 'Power Distribution Unit V1', 
@@ -692,7 +697,7 @@
             level: 'Beginner',
             pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ALTIUM_V1/preview',
             zip: 'https://drive.google.com/uc?export=download&id=1S8EE3zeXqmuoEgpjdVAjtBTDm4nLEasJ',
-            image: '/PersonalPortfolio/private_assets/images/Altium/Altium-PDUV1.png' 
+            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDUV1.png' 
           }
         ]
       }
@@ -769,10 +774,92 @@ closeModal.onclick = () => {
 };
 
 function showHome() {
-  projectsView.style.display = 'none';
-  mainContainer.style.display = 'block';
-  homeBtn.style.display = 'none';
+  mainContainer.style.display = "block";
+  projectsView.style.display = "none";
+  experienceView.style.display = "none";
+  homeBtn.style.display = "none";
 }
+function openExperience() {
+  const html = `
+    <div class="card" style="margin-bottom:20px;">
+      <h2>Experience</h2>
+      <p>Professional engineering work and responsibilities.</p>
+    </div>
+
+    <div class="project-card" style="padding:20px;" onclick="openExperienceDetail()">
+      <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Others/BCN_logo.png"
+           alt="BCN eMotorsport" style="width:140px; height:140px;">
+      <h3>Electronics Engineer — BCN eMotorsport</h3>
+      <p>September 2023 - September 2025</p>
+    </div>
+  `;
+
+  experienceBox.innerHTML = html;
+
+  mainContainer.style.display = "none";
+  projectsView.style.display = "none";
+  experienceView.style.display = "block";
+  homeBtn.style.display = "flex";
+}
+function openExperienceDetail() {
+  const html = `
+    <div class="card" style="padding:0; border-radius:16px; overflow:hidden;">
+
+      <!-- 🔵 HEADER / COVER IMAGE -->
+      <div style="
+        width:100%;
+        height:220px;
+        background-image:url('https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Others/BCN_Cover.jpg');
+        background-size:cover;
+        background-position:center;
+      "></div>
+
+      <!-- 🔵 CONTENT BELOW HEADER -->
+      <div style="padding:20px; display:flex; gap:20px; flex-wrap:wrap; align-items:center;">
+
+        <!-- LOGO -->
+        <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Others/BCN_logo.png"
+             style="width:130px;height:130px;object-fit:contain;border-radius:12%;box-shadow:0 4px 12px rgba(0,0,0,0.15);background:white;padding:8px;">
+
+        <!-- TEXT -->
+        <div>
+          <h2 style="margin:0 0 10px 0;">Electronics Engineer — BCN eMotorsport</h2>
+          <p style="text-align:justify; max-width:650px;">
+            BCN eMotorsport is the Formula Student team of the UPC. As part of the electronics department,
+            I designed embedded systems, PCBs, firmware and validation tools for an electric and autonomous race car.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 🔵 RESPONSIBILITIES -->
+    <div class="card" style="margin-top:20px;">
+      <h3>Responsibilities</h3>
+      <ul>
+        <li>PCB design in Altium Designer for safety and power systems.</li>
+        <li>Firmware development on STM32 using HAL & FreeRTOS.</li>
+        <li>Testing, debugging, and validation of embedded hardware.</li>
+        <li>Integration with sensors, power distribution and vehicle control.</li>
+      </ul>
+    </div>
+
+    <!-- 🔵 ACHIEVEMENTS -->
+    <div class="card" style="margin-top:20px;">
+      <h3>Achievements</h3>
+      <ul>
+        <li>Best Autonomous Team in Spain 2023.</li>
+        <li>Top Spanish Team at Formula Student Spain.</li>
+        <li>Competition experience at Red Bull Ring, Barcelona & Hockenheimring.</li>
+      </ul>
+    </div>
+  `;
+
+  experienceBox.innerHTML = html;
+}
+
+
+
 
   </script>
 
