@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Iván Álvarez Puerta — Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -16,9 +15,7 @@
       --shadow: rgba(0, 0, 0, 0.08);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -27,51 +24,15 @@
       color: var(--text);
     }
 
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
-      transition: opacity .3s ease;
-    }
+    .container { max-width: 1100px; margin: 40px auto; padding: 20px; transition: opacity .3s ease; }
 
-    /* HEADER */
-    header {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
+    header { display:flex; align-items:center; gap:24px; }
+    .avatar { width:150px; height:150px; border-radius:12%; overflow:hidden; flex-shrink:0; box-shadow:0 4px 10px rgba(0,0,0,0.15); }
+    .avatar img { width:100%; height:100%; object-fit:cover; }
+    h1 { margin:0; font-size:28px; }
+    p.lead { color:var(--muted); margin-top:4px; }
 
-    .avatar {
-      width: 150px;
-      height: 150px;
-      border-radius: 12%;
-      overflow: hidden;
-      flex-shrink: 0;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 28px;
-    }
-
-    p.lead {
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 24px;
-      margin-top: 24px;
-    }
+    .grid { display:grid; grid-template-columns: 1fr 320px; gap:24px; margin-top:24px; }
 
     .card {
       background: var(--card);
@@ -80,423 +41,119 @@
       box-shadow: 0 6px 16px var(--shadow);
       transition: transform .25s ease, box-shadow .25s ease;
     }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
 
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    }
-
-    .section-title {
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .skills-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .skills-list li {
-      background: #eef1f7;
-      padding: 8px 10px;
-      border-radius: 8px;
-      font-size: 13px;
-      color: var(--muted);
-    }
+    .section-title { font-weight:700; margin-bottom:10px; }
+    .skills-list { display:flex; flex-wrap:wrap; gap:8px; padding:0; list-style:none; }
+    .skills-list li { background:#eef1f7; padding:8px 10px; border-radius:8px; font-size:13px; color:var(--muted); }
 
     /* Buttons */
     .projects-btn {
-      position: fixed;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 0 8px 8px 0;
-      padding: 10px 14px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
-      z-index: 100;
+      position: fixed; top: 50%; left: 0; transform: translateY(-50%);
+      background: var(--accent); color: white; border: none; border-radius: 0 8px 8px 0;
+      padding: 10px 14px; font-weight:600; cursor:pointer; box-shadow:2px 4px 10px rgba(0,0,0,0.2); z-index:100;
     }
 
     .home-btn {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 42px;
-      height: 42px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      z-index: 150;
+      position: fixed; top: 20px; right: 20px;
+      background: var(--accent); color: white; border: none; border-radius: 50%;
+      width: 42px; height: 42px; display: none; align-items:center; justify-content:center;
+      font-size:20px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.2); z-index:150;
     }
 
     /* Sidebar */
     .sidebar {
-      position: fixed;
-      top: 0;
-      left: -260px;
-      width: 240px;
-      height: 100%;
-      background: var(--card);
-      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
-      transition: left .3s ease;
-      z-index: 90;
-      padding: 20px;
-      overflow-y: auto;
+      position: fixed; top:0; left:-260px; width:240px; height:100%; background:var(--card);
+      box-shadow:4px 0 12px rgba(0,0,0,0.15); transition:left .3s ease; z-index:90; padding:20px; overflow-y:auto;
     }
-
-    .sidebar.show {
-      left: 0;
-    }
-
-    .sidebar h3 {
-      margin-top: 0;
-      font-size: 18px;
-    }
-
+    .sidebar.show { left:0; }
+    .sidebar h3 { margin-top:0; font-size:18px; }
     .sidebar button {
-      width: 100%;
-      margin: 8px 0;
-      padding: 10px;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 500;
-      color: var(--text);
+      width:100%; margin:8px 0; padding:10px; background:white; border:1px solid #ddd; border-radius:6px;
+      cursor:pointer; font-weight:500; color:var(--text);
     }
-
-    .sidebar button:hover {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-    }
+    .sidebar button:hover { background:var(--accent); color:white; border-color:var(--accent); }
 
     /* Modal (projects) */
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      display: none;
-      align-items: center;
-      justify-content: center;
-    }
+    .modal { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:none; align-items:center; justify-content:center; z-index:1000; }
+    .modal.show { display:flex; }
+    .modal-content { background:#fff; border-radius:12px; padding:20px; width:90%; max-width:800px; position:relative; }
+    .close-btn { position:absolute; top:10px; right:14px; background:none; border:none; font-size:22px; cursor:pointer; }
 
-    .modal.show {
-      display: flex;
-    }
-
-    .modal-content {
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      width: 90%;
-      max-width: 800px;
-      position: relative;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 14px;
-      background: none;
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-    }
-
-    iframe {
-      width: 100%;
-      height: 480px;
-      border: none;
-      border-radius: 8px;
-    }
-
-    a.download-btn {
-      display: inline-block;
-      margin-top: 12px;
-      background: var(--accent);
-      color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-    }
+    iframe { width:100%; height:480px; border:none; border-radius:8px; }
+    a.download-btn { display:inline-block; margin-top:12px; background:var(--accent); color:white; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:600; }
 
     /* Projects view */
-    #projectsView {
-      display: none;
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
+    #projectsView { display:none; max-width:1100px; margin:40px auto; padding:20px; }
+    .projects-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; }
+
+    .project-card {
+      background:#fff; border-radius:12px; padding:14px; box-shadow:0 3px 10px var(--shadow); cursor:pointer;
+      display:flex; flex-direction:column; align-items:center; text-align:center;
     }
+    .project-card img { width:160px; height:160px; object-fit:contain; border-radius:10px; margin-bottom:14px; display:block; }
+    .project-card:hover { box-shadow:0 6px 18px var(--shadow); }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
+    #programBox .card { display:flex; align-items:center; gap:20px; padding:20px; flex-wrap:wrap; }
+    #programBox img { width:auto; height:120px; max-width:120px; object-fit:contain; border-radius:12%; box-shadow:0 4px 10px rgba(0,0,0,0.15); }
 
-.project-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 3px 10px var(--shadow);
-  cursor: pointer;
+    @media(max-width:880px){ .grid { grid-template-columns:1fr; } .sidebar { width:200px; } }
+    @media(max-width:480px){ .sidebar { width:180px; } #programBox .card { flex-direction:column; align-items:center; } }
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;  /* centra imagen y texto */
-  text-align: center;   /* centra textos */
-}
+    /* Password modal */
+    .password-modal { position: fixed; inset: 0; background: rgba(255,255,255,0.4); backdrop-filter: blur(8px); display:flex; align-items:center; justify-content:center; z-index:2000; }
+    .password-box { background:white; padding:30px; border-radius:14px; box-shadow:0 8px 24px rgba(0,0,0,0.15); text-align:center; max-width:320px; width:90%; animation: fadeIn .45s ease; }
+    .password-box input { width:100%; padding:10px; margin-top:12px; border:1px solid #ccc; border-radius:8px; font-size:14px; }
+    .password-box button { background:var(--accent); color:white; border:none; padding:10px 16px; border-radius:8px; margin-top:12px; cursor:pointer; font-weight:600; width:100%; }
+    .password-box button:hover { background:#2848c2; }
 
+    .skills-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap:14px; margin-top:10px; }
+    .skill-item { background:#eef1f7; border-radius:10px; padding:12px; text-align:center; cursor:pointer; box-shadow:0 3px 8px rgba(0,0,0,0.08); transition:all .25s ease; }
+    .skill-item:hover { transform: translateY(-3px) scale(1.05); background:#3457d5; color:white; box-shadow:0 6px 16px rgba(0,0,0,0.15); }
+    .skill-item img { width:48px; height:48px; object-fit:contain; margin-bottom:8px; pointer-events:none; }
+    .skill-item span { display:block; font-size:14px; font-weight:600; }
 
-.project-card img {
-  width: 160px;         /* tamaño fijo para evitar estiramientos */
-  height: 160px;        /* cuadrado perfecto */
-  object-fit: contain;  /* no recorta la imagen, la ajusta proporcionalmente */
-  border-radius: 10px;
-  margin-bottom: 14px;
-  display: block;
-}
-    .project-card:hover {
-      box-shadow: 0 6px 18px var(--shadow);
-    }
+    .level-container { margin-top:16px; }
+    .level-dropdown { background:white; padding:10px; border-radius:8px; margin-bottom:14px; box-shadow:0 3px 10px rgba(0,0,0,0.08); }
+    .level-header { display:flex; justify-content:space-between; align-items:center; cursor:pointer; font-weight:600; padding:8px; border-radius:6px; }
+    .level-header:hover { background:#eef1f7; }
+    .level-list { display:none; margin-top:8px; gap:16px; align-items:start; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); }
+    .level-list.show { display:grid; }
+    .level-arrow { transform:rotate(0deg); transition:transform .3s ease; }
+    .level-arrow.open { transform:rotate(180deg); }
 
-    #programBox .card {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 20px;
-      flex-wrap: wrap;
-    }
+    @keyframes fadeIn { from { opacity:0; transform:scale(0.95); } to { opacity:1; transform:scale(1); } }
 
-    #programBox .card div:first-child {
-      flex-shrink: 0;
-    }
-
-    #programBox img {
-      width: auto;
-      height: 120px;
-      max-width: 120px;
-      object-fit: contain;
-      border-radius: 12%;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    @media(max-width:880px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        width: 200px;
-      }
-    }
-
-    @media(max-width:480px) {
-      .sidebar {
-        width: 180px;
-      }
-
-      #programBox .card {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-
-    /* 🔐 Password Modal */
-    .password-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.4);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-    }
-
-    .password-box {
-      background: white;
-      padding: 30px;
-      border-radius: 14px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      text-align: center;
-      max-width: 300px;
-      width: 90%;
-      animation: fadeIn 0.5s ease;
-    }
-
-    .password-box input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 12px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-
-    .password-box button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      margin-top: 12px;
-      cursor: pointer;
-      font-weight: 600;
-      width: 100%;
-    }
-    .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 14px;
-    margin-top: 10px;
-  }
-
-  .skill-item {
-    background: #eef1f7;
-    border-radius: 10px;
-    padding: 12px;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-    transition: all 0.25s ease;
-  }
-
-  .skill-item:hover {
-    transform: translateY(-3px) scale(1.05);
-    background: #3457d5;
-    color: white;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-  }
-
-  .skill-item img {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    margin-bottom: 8px;
-    pointer-events: none;
-  }
-
-  .skill-item span {
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-  }
- .level-container {
-  margin-top: 16px;
-}
-
-.level-dropdown {
-  background: white;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 14px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.level-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  font-weight: 600;
-  padding: 8px;
-  border-radius: 6px;
-}
-
-.level-header:hover {
-  background: #eef1f7;
-}
-
-.level-list {
-  display: none; /* oculto por defecto */
-  margin-top: 8px;
-  gap: 16px;
-  align-items: start;
-
-  /* grid solo cuando se muestra */
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
-
-/* cuando está abierto mostramos la grid */
-.level-list.show {
-  display: grid;
-}
-
-
-.level-arrow {
-  transform: rotate(0deg);
-  transition: transform 0.3s ease;
-}
-
-.level-arrow.open {
-  transform: rotate(180deg);
-}
-
-
-    .password-box button:hover {
-      background: #2848c2;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+    /* small helpers */
+    .hidden { display:none !important; }
   </style>
 </head>
-
 <body>
 
-  <!-- 🔒 Modal de contraseña -->
+  <!-- Password modal -->
   <div id="passwordModal" class="password-modal">
     <div class="password-box">
       <h2>🔒 Protected Portfolio</h2>
       <p>Please enter the access password:</p>
       <input type="password" id="passwordInput" placeholder="Enter password">
       <button onclick="validatePassword()">Access</button>
-      <p id="errorMsg" style="color:red; display:none;">Incorrect password!</p>
+      <p id="errorMsg" style="color:red; display:none; margin-top:8px;">Incorrect password!</p>
     </div>
   </div>
 
-  <!-- 🌐 Contenido principal oculto hasta introducir contraseña -->
+  <!-- Main content (hidden until password validated) -->
   <div id="mainContent" style="display:none;">
 
     <button class="projects-btn" id="projectsBtn">Projects</button>
-    <button class="home-btn" id="homeBtn">🏠</button>
+    <button class="home-btn" id="homeBtn" title="Home">🏠</button>
 
     <div class="sidebar" id="sidebar">
       <h3>Projects</h3>
-        <button onclick="loadCategory('CST')">CST Studio</button>
-        <button onclick="loadCategory('ADS')">ADS</button>
-        <button onclick="loadCategory('HFSS')">Ansys HFSS</button>
-        <button onclick="loadCategory('Altium')">Altium Designer</button>
+      <button onclick="loadCategory('CST')">CST Studio</button>
+      <button onclick="loadCategory('ADS')">ADS</button>
+      <button onclick="loadCategory('HFSS')">Ansys HFSS</button>
+      <button onclick="loadCategory('Altium')">Altium Designer</button>
     </div>
-
-
 
     <div class="container" id="mainContainer">
       <header>
@@ -514,13 +171,17 @@
         <main>
           <section class="card">
             <div class="section-title">About me</div>
-            <p style="text-align: justify; text-align-last: justify;">Proactive and results-oriented Telecommunications Engineering master's student with hands-on experience in RF engineering, antenna design, PCB and embedded firmware development. Experienced working in multidisciplinary teams (50+ members) delivering high-quality technical solutions for motorsport and academic projects. Motivated to learn and contribute to innovative initiatives in RF, microwave and embedded systems.</p>
+            <p style="text-align: justify; text-align-last: justify;">
+              Proactive and results-oriented Telecommunications Engineering master's student with hands-on experience in RF engineering, antenna design, PCB and embedded firmware development. Experienced working in multidisciplinary teams (50+ members) delivering high-quality technical solutions for motorsport and academic projects. Motivated to learn and contribute to innovative initiatives in RF, microwave and embedded systems.
+            </p>
           </section>
-          <section class="card" style="margin-top:16px; cursor:pointer;" onclick="openExperience()">
-            <div class="section-title">Experience</div>
-            <p><strong>Electronics Engineer — BCN eMotorsport (2023–2025)</strong><br>
-            <p style="text-align: justify;">Development of a race car for student engineering competitions...</p>
-          </section>
+
+          <!-- Experience card (clickable) -->
+        <section class="card" onclick="showExperienceList()" style="cursor:pointer;">
+          <p><strong>Electronics Engineer — BCN eMotorsport</strong></p>
+          <p>Formula Student team of the UPC. Embedded systems, PCBs and firmware.</p>
+        </section>
+
           <section class="card" style="margin-top:16px">
             <div class="section-title">Education</div>
             <ul style="list-style:none;padding:0;margin:0;color:var(--muted)">
@@ -529,28 +190,30 @@
             </ul>
           </section>
         </main>
+
         <aside>
-        <div class="card">
-          <div class="section-title">Main Tools</div>
-          <div class="skills-grid">
-            <div class="skill-item" onclick="loadCategory('Altium')">
-              <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-1.png" alt="Altium Designer">
-              <span>Altium Designer</span>
-            </div>
-            <div class="skill-item" onclick="loadCategory('CST')">
-              <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/CST-1.png" alt="CST Studio">
-              <span>CST Studio Suite</span>
-            </div>
-            <div class="skill-item" onclick="loadCategory('HFSS')">
-              <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png" alt="ANSYS HFSS">
-              <span>ANSYS HFSS</span>
-            </div>
-            <div class="skill-item" onclick="loadCategory('ADS')">
-              <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg" alt="Keysight ADS">
-              <span>Keysight ADS</span>
+          <div class="card">
+            <div class="section-title">Main Tools</div>
+            <div class="skills-grid">
+              <div class="skill-item" onclick="loadCategory('Altium')">
+                <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-1.png" alt="Altium Designer">
+                <span>Altium Designer</span>
+              </div>
+              <div class="skill-item" onclick="loadCategory('CST')">
+                <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/CST-1.png" alt="CST Studio">
+                <span>CST Studio Suite</span>
+              </div>
+              <div class="skill-item" onclick="loadCategory('HFSS')">
+                <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png" alt="ANSYS HFSS">
+                <span>ANSYS HFSS</span>
+              </div>
+              <div class="skill-item" onclick="loadCategory('ADS')">
+                <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg" alt="Keysight ADS">
+                <span>Keysight ADS</span>
+              </div>
             </div>
           </div>
-        </div>
+
           <div class="card" style="margin-top:16px">
             <div class="section-title">Languages</div>
             <ul style="list-style:none;padding:0;margin:0;color:var(--muted)">
@@ -563,32 +226,34 @@
       </div>
     </div>
 
+    <!-- Projects view -->
     <div id="projectsView">
       <div class="program-box" id="programBox"></div>
     </div>
+
+    <!-- Experience view (reused for detail) -->
     <div id="experienceView" style="display:none; max-width:1100px; margin:40px auto; padding:20px;">
       <div id="experienceBox"></div>
     </div>
 
-
+    <!-- Modal for project PDFs -->
     <div class="modal" id="modal">
       <div class="modal-content">
         <button class="close-btn" id="closeModal">×</button>
-          <iframe id="pdfViewer" src="" 
-          style="width:95%; height:460px; border:none; border-radius:8px;">
-          </iframe>   
+        <iframe id="pdfViewer" src="" style="width:95%; height:460px; border:none; border-radius:8px;"></iframe>
         <a class="download-btn" id="downloadZip" href="#" download>Download ZIP</a>
       </div>
     </div>
 
+  </div> <!-- mainContent end -->
+
   <script>
-    /* 🔐 Password system */
+    /* Password behavior */
     function validatePassword() {
       const input = document.getElementById("passwordInput").value;
       const modal = document.getElementById("passwordModal");
       const content = document.getElementById("mainContent");
       const error = document.getElementById("errorMsg");
-
       if (input === "HOLA") {
         modal.style.display = "none";
         content.style.display = "block";
@@ -598,12 +263,9 @@
         document.getElementById("passwordInput").value = "";
       }
     }
+    window.onload = function() { document.body.style.overflow = "hidden"; };
 
-    window.onload = function () {
-      document.body.style.overflow = "hidden";
-    };
-
-    /* Original project JS */
+    /* Elements */
     const sidebar = document.getElementById('sidebar');
     const btn = document.getElementById('projectsBtn');
     const homeBtn = document.getElementById('homeBtn');
@@ -611,258 +273,426 @@
     const closeModal = document.getElementById('closeModal');
     const pdfViewer = document.getElementById('pdfViewer');
     const downloadZip = document.getElementById('downloadZip');
-    const projectsContainer = document.getElementById('projectsContainer');
     const mainContainer = document.getElementById('mainContainer');
     const projectsView = document.getElementById('projectsView');
+    const experienceView = document.getElementById('experienceView');
+    const experienceBox = document.getElementById('experienceBox');
     const programBox = document.getElementById('programBox');
 
-    btn.onclick = () => sidebar.classList.toggle('show');
+    /* Toggle sidebar */
+    btn.onclick = () => {
+      sidebar.classList.toggle('show');
+    };
+
+    /* Home button returns to main */
     homeBtn.onclick = () => showHome();
 
+    /* Close modal */
+    closeModal.onclick = () => {
+      modal.classList.remove('show');
+      pdfViewer.src = '';
+      downloadZip.href = '#';
+    };
+
+    /* Projects data (unchanged) */
     const projects = {
       CST: {
         logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/CST-1.png',
         description: 'Projects focused on antenna design, array optimization, and RF system simulations.',
         items: [
-          { 
-            title: 'Patch Antenna Design', 
-            desc: 'Simulation of a patch antenna array', 
-            level: 'Beginner',
-            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_CST1/preview',
-            zip: 'https://drive.google.com/uc?export=download&1j3xjaE6HDVxhxWdoKWV2OuGcf3tPUwiq',
-            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/CST-PatchAntenna.png' 
-          },
-          { 
-            title: 'Antenna Optimization', 
-            desc: 'Optimizing radiation patterns', 
-            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_CST2/preview',
-            level: 'Beginner',
-            zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_CST2',
-            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/cst-3.jpg' 
-          }
+          { title: 'Patch Antenna Design', desc: 'Simulation of a patch antenna array', level: 'Beginner', pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_CST1/preview', zip: '#', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/CST-PatchAntenna.png' },
+          { title: 'Antenna Optimization', desc: 'Optimizing radiation patterns', level: 'Beginner', pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_CST2/preview', zip: '#', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/cst-3.jpg' }
         ]
       },
-
       ADS: {
         logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg',
         description: 'Projects involving RF and microwave circuit design, such as amplifiers and filters.',
         items: [
-          { 
-            title: 'Microwave Amplifier', 
-            desc: 'S-parameter analysis',
-            level: 'Beginner',
-            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ADS/preview',
-            zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_ADS',
-            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg' 
-          }
+          { title: 'Microwave Amplifier', desc: 'S-parameter analysis', level: 'Beginner', pdf: '#', zip: '#', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg' }
         ]
       },
       HFSS: {
         logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png',
         description: 'Electromagnetic simulations for antenna and PCB layout validation.',
         items: [
-          { 
-            title: '3D Antenna Model', 
-            desc: 'Simulation and optimization using Ansys HFSS',
-            level: 'Beginner',
-            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_HFSS/preview',
-            zip: 'https://drive.google.com/uc?export=download&id=ID_DEL_ZIP_HFSS',
-            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png' 
-          }
+          { title: '3D Antenna Model', desc: 'Simulation and optimization using Ansys HFSS', level: 'Beginner', pdf: '#', zip: '#', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png' }
         ]
       },
       Altium: {
         logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-1.png',
         description: 'PCB design projects, including embedded systems and RF boards.',
         items: [
-          { 
-            title: 'Power Distribution Unit V2', 
-            desc: 'Design of a power distribution unit for a Formula Student car',
-            level: 'Beginner',
-            pdf: 'https://drive.google.com/file/d/1ugPq95SpNnXLKPepvnIcP2ZrdqooAd6a/preview',
-            zip: 'https://drive.google.com/uc?export=download&197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr',
-            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDU.png' 
-          },
-          { 
-            title: 'Brake System Plausibility Device', 
-            desc: 'Design of a Brake System Plausibility Device PCB for a Formula Student car',
-            level: 'Beginner',
-            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ALTIUM_V1/preview',
-            zip: 'https://drive.google.com/uc?export=download&id=1S8EE3zeXqmuoEgpjdVAjtBTDm4nLEasJ',
-            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDUV1.png' 
-          },
-          { 
-            title: 'Power Distribution Unit V1', 
-            desc: 'Design of a power distribution unit for a Formula Student car',
-            level: 'Beginner',
-            pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_ALTIUM_V1/preview',
-            zip: 'https://drive.google.com/uc?export=download&id=1S8EE3zeXqmuoEgpjdVAjtBTDm4nLEasJ',
-            image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDUV1.png' 
-          }
+          { title: 'Power Distribution Unit V2', desc: 'Design of a power distribution unit for a Formula Student car', level: 'Beginner', pdf: '#', zip: '#', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDU.png' }
         ]
       }
     };
+    /* ===== EXPERIENCES DATA ===== */
 
- function loadCategory(name) {
-  const data = projects[name];
-  if (!data) return;
+    const experiences = [
+      {
+        id: "bcn",
+        company: "BCN eMotorsport",
+        role: "Electronics Engineer",
+        period: "September 2023 – September 2025",
+        short: "Development of embedded systems, PCBs and firmware for a Formula Student car.",
+        logo: "https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Others/BCNeMotorsport/BCN_logo.png",
+        header: "https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Others/BCNeMotorsport/BCN_Cover.jpg",
+        video: "https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Others/BCNeMotorsport/BCNemotorsportprevideo.mp4",
+        website: "https://bcnemotorsport.upc.edu/",
+        responsibilities: [
+          "Design of embedded systems for electric race car.",
+          "PCB development using Altium Designer.",
+          "Firmware development for vehicle controllers.",
+          "Validation and debugging of electronic subsystems.",
+          "Autonomous subsystem support and testing."
+        ],
+        achievements: [
+          "Best Autonomous Team in Spain 2023.",
+          "Top Spanish Team at Formula Student Spain.",
+          "Competition experience in Austria, Spain and Germany."
+        ]
+      }
+    ];
 
-  const levels = ['Beginner', 'Intermediate', 'Advanced'];
-  let html = `
-    <div class="card">
-      <div><img src="${data.logo}" alt="${name} logo"></div>
-      <div>
-        <h2>${name} Projects</h2>
-        <p>${data.description}</p>
-      </div>
-    </div>
-  `;
 
-  html += `<div class="level-container">`;
-
-  levels.forEach(level => {
-    const items = data.items.filter(p => p.level === level);
-    html += `
-      <div class="level-dropdown">
-        <div class="level-header">
-          ${level} <span class="level-arrow">▼</span>
+    /* Load project category */
+    function loadCategory(name) {
+      const data = projects[name];
+      if (!data) return;
+      const levels = ['Beginner','Intermediate','Advanced'];
+      let html = `
+        <div class="card">
+          <div><img src="${data.logo}" alt="${name} logo" style="height:80px; object-fit:contain;"></div>
+          <div style="margin-left:12px;">
+            <h2>${name} Projects</h2>
+            <p>${data.description}</p>
+          </div>
         </div>
-        <div class="level-list">
-          ${items.length > 0 ? items.map(p => `
-            <div class="project-card" onclick="openProject('${p.pdf}', '${p.zip}')">
-              <img src="${p.image}" alt="${p.title}">
-              <h4>${p.title}</h4>
-              <p>${p.desc}</p>
+      `;
+      html += `<div class="level-container">`;
+      levels.forEach(level => {
+        const items = data.items.filter(p => p.level === level);
+        html += `
+          <div class="level-dropdown">
+            <div class="level-header">${level} <span class="level-arrow">▼</span></div>
+            <div class="level-list">
+              ${items.length > 0 ? items.map(p => `
+                <div class="project-card" onclick="openProject('${p.pdf}','${p.zip}')">
+                  <img src="${p.image}" alt="${p.title}">
+                  <h4>${p.title}</h4>
+                  <p style="color:#666;">${p.desc}</p>
+                </div>
+              `).join('') : `<p style="color:#777;margin-left:10px;">No ${level.toLowerCase()} projects yet.</p>`}
             </div>
-          `).join('') : `<p style="color:#777;margin-left:10px;">No ${level.toLowerCase()} projects yet.</p>`}
+          </div>
+        `;
+      });
+      html += `</div>`;
+      programBox.innerHTML = html;
+      mainContainer.style.display = "none";
+      projectsView.style.display = "block";
+      experienceView.style.display = "none";
+      sidebar.classList.remove('show');
+      homeBtn.style.display = "flex";
+    }
+
+    /* Toggle level dropdowns */
+    document.addEventListener('click', function(e) {
+      const header = e.target.closest('.level-header');
+      if (header) {
+        const dropdown = header.closest('.level-dropdown');
+        const list = dropdown.querySelector('.level-list');
+        const arrow = header.querySelector('.level-arrow');
+        list.classList.toggle('show');
+        arrow.classList.toggle('open');
+      }
+    });
+
+    function openProject(pdf, zip) {
+      modal.classList.add('show');
+      pdfViewer.src = pdf;
+      downloadZip.href = zip || '#';
+    }
+
+    /* Ensure modal close by clicking outside */
+    modal.addEventListener('click', (ev) => {
+      if (ev.target === modal) {
+        modal.classList.remove('show');
+        pdfViewer.src = '';
+      }
+    });
+
+    /* Home behavior - resets views */
+    function showHome() {
+      mainContainer.style.display = "block";
+      projectsView.style.display = "none";
+      experienceView.style.display = "none";
+      homeBtn.style.display = "none";
+      sidebar.classList.remove('show');
+      // clear boxes so content reloads fresh next time
+      programBox.innerHTML = "";
+      experienceBox.innerHTML = "";
+    }
+    function showExperienceList() {
+
+      let html = `
+        <h2 style="margin-bottom:20px;">Experience</h2>
+        <div style="
+          display:grid;
+          grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+          gap:20px;
+        ">
+      `;
+
+      experiences.forEach(exp => {
+        html += `
+          <div class="card" style="cursor:pointer;" onclick="openExperienceDetail('${exp.id}')">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <img src="${exp.logo}" style="width:70px;height:70px;object-fit:contain;border-radius:12%;">
+              <div>
+                <h3 style="margin:0;">${exp.role}</h3>
+                <p style="margin:2px 0 0 0; color:var(--muted);"><strong>${exp.company}</strong></p>
+                <p style="margin:0; color:var(--muted); font-size:14px;">${exp.period}</p>
+              </div>
+            </div>
+            <p style="margin-top:10px; color:var(--muted);">${exp.short}</p>
+          </div>
+        `;
+      });
+
+      html += `</div>`;
+
+      experienceBox.innerHTML = html;
+      mainContainer.style.display = "none";
+      projectsView.style.display = "none";
+      experienceView.style.display = "block";
+      homeBtn.style.display = "flex";
+    }
+
+    function openExperienceDetail(id) {
+
+      const exp = experiences.find(e => e.id === id);
+      if (!exp) return;
+
+      mainContainer.style.display = "none";
+      projectsView.style.display = "none";
+      experienceView.style.display = "block";
+      homeBtn.style.display = "flex";
+
+      experienceBox.innerHTML = `
+
+        <!-- HEADER IMAGE -->
+        <div style="
+          position:relative;
+          width:100%;
+          height:330px;
+          overflow:hidden;
+          border-radius:20px;
+          box-shadow:0 6px 18px rgba(0,0,0,0.1);
+          margin-bottom:25px;
+        ">
+          <img src="${exp.header}" 
+              style="width:100%;height:100%;object-fit:cover;object-position:center;">
+          <div style="
+            position:absolute;
+            bottom:0;left:0;
+            width:100%;height:150px;
+            background:linear-gradient(to bottom, rgba(0,0,0,0) 0%, white 100%);
+          "></div>
         </div>
-      </div>
-    `;
-  });
 
-  html += `</div>`;
 
-  programBox.innerHTML = html;
-  mainContainer.style.display = "none";
-  projectsView.style.display = "block";
-  sidebar.classList.remove("show");
-  homeBtn.style.display = "flex";
-}
+        <!-- INFO BOX -->
+        <div class="card" style="display:flex; gap:20px; align-items:center;">
+          <img src="${exp.logo}" 
+              style="width:120px;height:120px;object-fit:contain;border-radius:12%;background:white;padding:10px;">
 
-/* Toggle dinámico de niveles */
-document.addEventListener('click', function(e) {
-  if(e.target.classList.contains('level-header') || e.target.closest('.level-header')) {
-    const header = e.target.classList.contains('level-header') ? e.target : e.target.closest('.level-header');
-    const dropdown = header.closest('.level-dropdown');
-    const list = dropdown.querySelector('.level-list');
-    const arrow = header.querySelector('.level-arrow');
-
-    list.classList.toggle('show');
-    arrow.classList.toggle('open');
-  }
-});
-
-function openProject(pdf, zip) {
-  modal.classList.add('show');
-  pdfViewer.src = pdf;
-  downloadZip.href = zip;
-}
-
-closeModal.onclick = () => {
-  modal.classList.remove('show');
-  pdfViewer.src = '';
-};
-
-function showHome() {
-  mainContainer.style.display = "block";
-  projectsView.style.display = "none";
-  experienceView.style.display = "none";
-  homeBtn.style.display = "none";
-}
-function openExperience() {
-  const html = `
-    <div class="card" style="margin-bottom:20px;">
-      <h2>Experience</h2>
-      <p>Professional engineering work and responsibilities.</p>
-    </div>
-
-    <div class="project-card" style="padding:20px;" onclick="openExperienceDetail()">
-      <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Others/BCN_logo.png"
-           alt="BCN eMotorsport" style="width:140px; height:140px;">
-      <h3>Electronics Engineer — BCN eMotorsport</h3>
-      <p>September 2023 - September 2025</p>
-    </div>
-  `;
-
-  experienceBox.innerHTML = html;
-
-  mainContainer.style.display = "none";
-  projectsView.style.display = "none";
-  experienceView.style.display = "block";
-  homeBtn.style.display = "flex";
-}
-function openExperienceDetail() {
-  const html = `
-    <div class="card" style="padding:0; border-radius:16px; overflow:hidden;">
-
-      <!-- 🔵 HEADER / COVER IMAGE -->
-      <div style="
-        width:100%;
-        height:220px;
-        background-image:url('https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Others/BCN_Cover.jpg');
-        background-size:cover;
-        background-position:center;
-      "></div>
-
-      <!-- 🔵 CONTENT BELOW HEADER -->
-      <div style="padding:20px; display:flex; gap:20px; flex-wrap:wrap; align-items:center;">
-
-        <!-- LOGO -->
-        <img src="https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Others/BCN_logo.png"
-             style="width:130px;height:130px;object-fit:contain;border-radius:12%;box-shadow:0 4px 12px rgba(0,0,0,0.15);background:white;padding:8px;">
-
-        <!-- TEXT -->
-        <div>
-          <h2 style="margin:0 0 10px 0;">Electronics Engineer — BCN eMotorsport</h2>
-          <p style="text-align:justify; max-width:650px;">
-            BCN eMotorsport is the Formula Student team of the UPC. As part of the electronics department,
-            I designed embedded systems, PCBs, firmware and validation tools for an electric and autonomous race car.
-          </p>
+          <div>
+            <h2 style="margin:0;">${exp.role}</h2>
+            <p style="margin:4px 0;"><strong>${exp.company}</strong></p>
+            <p style="margin:0;color:var(--muted);">${exp.period}</p>
+          </div>
         </div>
 
-      </div>
-    </div>
+        <!-- MEDIA BOX -->
+        <div class="card" style="margin-top:0px;">
+          <video src="${exp.video}" autoplay muted loop playsinline 
+                style="width:100%;border-radius:12px;margin-top:10px;"></video>
 
-    <!-- 🔵 RESPONSIBILITIES -->
-    <div class="card" style="margin-top:20px;">
-      <h3>Responsibilities</h3>
-      <ul>
-        <li>PCB design in Altium Designer for safety and power systems.</li>
-        <li>Firmware development on STM32 using HAL & FreeRTOS.</li>
-        <li>Testing, debugging, and validation of embedded hardware.</li>
-        <li>Integration with sensors, power distribution and vehicle control.</li>
-      </ul>
-    </div>
+<!-- BOX 1 — Formula Student Overview -->
+<div class="card" style="margin-top:20px;">
+  <h3 style="font-size:22px; font-weight:700;">Formula Student Overview</h3>
+  <p style="color:var(--muted); text-align:justify;">
+    Formula Student is an international university competition in which teams design, build, and race a formula-style single-seater car.
+    It evaluates engineering skills, innovation, project management, and teamwork through both static events (design, cost, business plan) 
+    and dynamic events (acceleration, skidpad, autocross, and endurance). My participation followed Formula Student Germany regulations, 
+    recognized as the most demanding competition worldwide. The program aims to develop well-rounded engineers through hands-on experience.
+  </p>
+</div>
 
-    <!-- 🔵 ACHIEVEMENTS -->
-    <div class="card" style="margin-top:20px;">
-      <h3>Achievements</h3>
-      <ul>
-        <li>Best Autonomous Team in Spain 2023.</li>
-        <li>Top Spanish Team at Formula Student Spain.</li>
-        <li>Competition experience at Red Bull Ring, Barcelona & Hockenheimring.</li>
-      </ul>
-    </div>
-  `;
+<!-- BOX 2 — 1st Year -->
+<div class="card" style="margin-top:20px;">
+  <h3 style="font-size:22px; font-weight:700;">1st year - Junior Electronics Engineer (Full-Time)</h3>
 
-  experienceBox.innerHTML = html;
-}
+  <!-- GANTT IMAGE -->
+  <figure style="margin:15px 0;">
+    <img src="https://picsum.photos/900/300?random=201" style="width:100%; border-radius:10px;">
+    <figcaption style="color:var(--muted); text-align:center; font-size:13px;">Year 1 — Gantt Diagram</figcaption>
+  </figure>
+
+  <ul style="color:var(--muted); padding-left:20px; margin-top:10px; line-height:1.55;text-align:justify;">
+
+    During the first year, I familiarized myself with the car's systems and performed foundational tasks. Firstly, I worked hands-on with firmware in C for two critical ECUs: the Power Distribution Unit and the Front ECU responsible for sensor integration, including digital filtering using the DSP capabilities of the STM32F4 series and real-time operating systems (FreeRTOS). 
+    <br><br>
+    I also implemented the backup charger code, which was ultimately used due to an issue with the main charger in the German Competition.
+    Apart from that, I participated in the validation of the newly introduced Power Distribution Unit and proposed improvements, which were documented for implementation in the following year.
+    In the development of the wiring harness, I assisted in its manufacturing and validation according to automotive standards.
+    <br><br>
+    I was responsible for documentation for the Electrical and Accumulator inspections of tasks dependent on the Electronics Department.
+    I learned stencil soldering techniques in preparation for the next season (IMAGE/GIF of STENCIL heating process).
+    <br><br>
+    Additionally, throughout the year, I gained comprehensive knowledge of all car systems under the supervision of second-year teammates in the department.
+
+  </ul>
+
+  <figure style="margin:15px 0;">
+    <img src="https://picsum.photos/900/400?random=202" style="width:100%; border-radius:10px;">
+    <figcaption style="color:var(--muted); text-align:center; font-size:13px;">Stencil soldering — Year 1</figcaption>
+  </figure>
+</div>
+
+<!-- BOX 3 — 2nd Year -->
+<div class="card" style="margin-top:20px;">
+  <h3 style="font-size:22px; font-weight:700;">2nd year - Electronics Engineer (Full-Time)</h3>
+
+  <!-- GANTT IMAGE -->
+  <figure style="margin:15px 0;">
+    <img src="https://picsum.photos/900/300?random=203" style="width:100%; border-radius:10px;">
+    <figcaption style="color:var(--muted);text-align:center; font-size:13px;">Year 2 — Gantt Diagram</figcaption>
+  </figure>
+
+  <ul style="color:var(--muted); padding-left:20px; margin-top:10px; line-height:1.55;text-align:justify;">
+
+    During the second year, I took on significantly greater responsibilities in both hardware and firmware development within the Electronics Department. I was responsible for the complete design of the new Power Distribution Unit, from the initial concept and schematics to validation and integration into the vehicle (link to project).
+    <br><br>
+    Additionally, I managed the firmware of all Electronic Control Units except the BMS and the Dashboard, improving robustness, maintainability, and real-time behavior.
+    I also oversaw the electronics of the autonomous safety system, ensuring redundancy, sensor validation, and compliance with Formula Student safety requirements.
+    <br><br>
+    Parallel to this, I collaborated in the Accumulator validation process, including cell cycling to optimize performance, and contributed to the maintenance and debugging of the BMS Slave boards.
+    Regarding manufacturing tasks, I participated in the production of part of the wiring harness, following automotive standards and documentation, and became responsible for the stencil soldering process for PCB assembly.
+    <br><br>
+    Additionally, I carried out my Final Degree Thesis, focused on a full-system review of the car’s electronic architecture. This included proposing improvements across all subsystems and presenting new hardware developments such as the redesigned BSPD (link to project), some of which are being implemented this year.
+
+  </ul>
+
+  <figure style="margin:15px 0;">
+    <img src="https://picsum.photos/900/400?random=204" style="width:100%; border-radius:10px;">
+    <figcaption style="color:var(--muted);text-align:center; font-size:13px;">Electronics work — Austria Competition</figcaption>
+  </figure>
+</div>
+
+<!-- BOX 4 — Achievements -->
+<div class="card" style="margin-top:20px;">
+  <h3 style="font-size:22px; font-weight:700;">Achievements</h3>
+
+  <!-- YEAR 1 -->
+  <h4 style="margin-top:15px; font-size:18px; font-weight:600;">1st Year Competitions</h4>
+
+  <h5 style="margin-top:10px; font-size:16px; font-weight:600;">Austria</h5>
+  <ul style="color:var(--muted); padding-left:20px;">
+    <li>Best result ever achieved in FSA
+  </ul>
+
+  <h5 style="margin-top:10px; font-size:16px; font-weight:600;">Spain</h5>
+  <ul style="color:var(--muted); padding-left:20px;">
+    <li>DV Winners
+    <br>
+    <li>Trackdrive winners
+    <br>
+    <li>Autonomous Autocross winners
+    <br>
+    <li>Design winners
+    <br>
+    <li>Completed endurance (did not pass Post Inspection)
+  </ul>
+
+  <figure style="margin:15px 0;">
+    <img src="https://picsum.photos/900/400?random=205" style="width:100%; border-radius:10px;">
+    <figcaption style="color:var(--muted);text-align:center; font-size:13px;">Competitions — Year 1</figcaption>
+  </figure>
+
+  <!-- YEAR 2 -->
+  <h4 style="margin-top:25px; font-size:18px; font-weight:600;">2nd Year Competitions</h4>
+
+  <h5 style="margin-top:10px; font-size:16px; font-weight:600;">Austria</h5>
+  <ul style="color:var(--muted); padding-left:20px;">
+    <li>First completed Endurance in FSA
+    <br>
+    <li>Achieved 87.5% more points than the previous year
+    <br>
+    <li>Significant improvement in electronics design static event (only competition with individual scores and direct comparison)
+  </ul>
+
+  <h5 style="margin-top:10px; font-size:16px; font-weight:600;">Spain</h5>
+  <ul style="color:var(--muted); padding-left:20px;">
+    <li>Fastest lap in AutoX DV
+    <br>
+    <li>3rd place in Autonomous category
+    <br>
+    <li>Fastest ever Autonomous Acceleration run
+  </ul>
+
+  <figure style="margin:15px 0;">
+    <img src="https://picsum.photos/900/400?random=206" style="width:100%; border-radius:10px;">
+    <figcaption style="color:var(--muted); text-align:center;font-size:13px;">Competitions — Spain (Year 2)</figcaption>
+  </figure>
+
+  <h5 style="margin-top:10px; font-size:16px; font-weight:600;">Germany</h5>
+  <ul style="color:var(--muted); padding-left:20px;">
+    <li>1st team to complete Technical Inspections in Manual Mode
+    <br>
+    <li>3rd team to complete Technical Inspections in Autonomous Mode
+    <br>
+    <li>2nd highest points score ever for the team in FSG (16th overall)
+    <br>
+    <li>First completed Endurance since 2018
+  </ul>
+
+  <figure style="margin:15px 0;">
+    <img src="https://picsum.photos/900/400?random=207" style="width:100%; border-radius:10px;">
+    <figcaption style="color:var(--muted); text-align:center; font-size:13px;">FSG — Technical Inspections</figcaption>
+  </figure>
+</div>
 
 
 
+      `;
+    }
+ //Si se quiere añadir enlace a la web de bcn, no lo haria que es una mierda:
+ //            <a href="${exp.website}" target="_blank"
+ //         style="display:inline-block;margin-top:15px;background:#3457d5;color:white;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:600;">
+ //       🌐 Visit Website
+ //       </a>
+ //     </div>
+ // initial state: hide main content until password ok
+ // Note: password modal is displayed by default in HTML
+
+    // If the user presses Escape, close modals / return home
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        // close project modal if open
+        if (modal.classList.contains('show')) {
+          modal.classList.remove('show');
+          pdfViewer.src = '';
+        } else {
+          showHome();
+        }
+      }
+    });
+
+    // Optional: make project-level links open in new tab when pdf is external
+    // (already handled by iframe modal)
 
   </script>
-
 </body>
-
 </html>
