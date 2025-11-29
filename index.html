@@ -251,44 +251,40 @@
 
   <script>
     /* Password behavior */
+    let pendingCategory = null;
     function validatePassword() {
       const input = document.getElementById("passwordInput").value;
       const modal = document.getElementById("passwordModal");
       const content = document.getElementById("mainContent");
       const error = document.getElementById("errorMsg");
+
       if (input === "HOLA") {
         modal.style.display = "none";
         content.style.display = "block";
         document.body.style.overflow = "auto";
+
+        // si hay categoría pendiente, cargarla
+        if (pendingCategory) {
+          loadCategory(pendingCategory);
+          pendingCategory = null;
+        }
+
       } else {
         error.style.display = "block";
         document.getElementById("passwordInput").value = "";
       }
     }
-    window.onload = function() {
-      document.body.style.overflow = "hidden";
+window.onload = function() {
+  document.body.style.overflow = "hidden";
 
-      // Asegúrate de que el modal de proyectos está cerrado al inicio (sin inline display!)
-      modal.classList.remove('show');
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
 
-      // detectar parámetro ?category=...
-      const params = new URLSearchParams(window.location.search);
-      const category = params.get("category");
-      if (category) {
-        document.getElementById("passwordModal").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-        document.body.style.overflow = "auto";
-
-        // cerrar modal de proyectos por si acaso (sin usar inline display)
-        modal.classList.remove('show');
-        pdfViewer.src = "";
-        downloadZip.href = "#";
-
-        // cargar la categoría
-        loadCategory(category);
-      }
-    };
-
+  if (category) {
+    // guardar la categoría pendiente para cargarla tras validar la contraseña
+    pendingCategory = category;
+  }
+}
 
 
 
@@ -667,7 +663,11 @@ function openProject(pdf, zip) {
     Parallel to this, I collaborated in the Accumulator validation process, including cell cycling to optimize performance, and contributed to the maintenance and debugging of the BMS Slave boards.
     Regarding manufacturing tasks, I participated in the production of part of the wiring harness, following automotive standards and documentation, and became responsible for the stencil soldering process for PCB assembly.
     <br><br>
-    Additionally, I carried out my Final Degree Thesis, focused on a full-system review of the car’s electronic architecture. This included proposing improvements across all subsystems and presenting new hardware developments such as the redesigned BSPD (link to project), some of which are being implemented this year.
+    Additionally, I carried out my Final Degree Thesis, focused on a full-system review of the car’s electronic architecture. This included proposing improvements across all subsystems and presenting new hardware developments such as the redesigned <a href="/PersonalPortfolio/?category=Altium"
+   style="color:var(--accent); text-decoration:none;">
+  BSPD
+</a>
+, some of which are being implemented this year.
 
   </ul>
 
