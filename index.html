@@ -60,6 +60,7 @@
       width: 42px; height: 42px; display: none; align-items:center; justify-content:center;
       font-size:20px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.2); z-index:150;
     }
+    .back-btn {position: fixed; top: 70px; right: 20px; background: var(--accent); color: white; border: none; border-radius: 50%; width: 42px; height: 42px; display: none; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); z-index: 150; }
 
     /* Sidebar */
     .sidebar {
@@ -146,6 +147,7 @@
 
     <button class="projects-btn" id="projectsBtn">Projects</button>
     <button class="home-btn" id="homeBtn" title="Home">🏠</button>
+    <button class="back-btn" id="backBtn" onclick="goBack()">↩︎</button>
 
     <div class="sidebar" id="sidebar">
       <h3>Projects</h3>
@@ -263,7 +265,32 @@
         document.getElementById("passwordInput").value = "";
       }
     }
-    window.onload = function() { document.body.style.overflow = "hidden"; };
+    window.onload = function() {
+      document.body.style.overflow = "hidden";
+
+      // Asegúrate de que el modal de proyectos está cerrado al inicio (sin inline display!)
+      modal.classList.remove('show');
+
+      // detectar parámetro ?category=...
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get("category");
+      if (category) {
+        document.getElementById("passwordModal").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        document.body.style.overflow = "auto";
+
+        // cerrar modal de proyectos por si acaso (sin usar inline display)
+        modal.classList.remove('show');
+        pdfViewer.src = "";
+        downloadZip.href = "#";
+
+        // cargar la categoría
+        loadCategory(category);
+      }
+    };
+
+
+
 
     /* Elements */
     const sidebar = document.getElementById('sidebar');
@@ -293,36 +320,38 @@
       pdfViewer.src = '';
       downloadZip.href = '#';
     };
-
+    
     /* Projects data (unchanged) */
     const projects = {
       CST: {
         logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/CST-1.png',
         description: 'Projects focused on antenna design, array optimization, and RF system simulations.',
         items: [
-          { title: 'Patch Antenna Design', desc: 'Simulation of a patch antenna array', level: 'Beginner', pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_CST1/preview', zip: '#', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/CST-PatchAntenna.png' },
-          { title: 'Antenna Optimization', desc: 'Optimizing radiation patterns', level: 'Beginner', pdf: 'https://drive.google.com/file/d/ID_DEL_PDF_CST2/preview', zip: '#', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/cst-3.jpg' }
+          { title: 'Patch Antenna Design', desc: 'Simulation of a patch antenna array', level: 'Beginner', pdf: 'https://drive.google.com/file/d/1M1ilShzyjZOOwNrf45_VAkSdrwLR5BRl/preview', zip: 'https://drive.google.com/uc?export=download&id=197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/CST-PatchAntenna.png' },
+          { title: 'Antenna Optimization', desc: 'Optimizing radiation patterns', level: 'Beginner', pdf: 'https://drive.google.com/file/d/1M1ilShzyjZOOwNrf45_VAkSdrwLR5BRl/preview', zip: 'https://drive.google.com/uc?export=download&id=197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/CST/cst-3.jpg' }
         ]
       },
       ADS: {
         logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg',
         description: 'Projects involving RF and microwave circuit design, such as amplifiers and filters.',
         items: [
-          { title: 'Microwave Amplifier', desc: 'S-parameter analysis', level: 'Beginner', pdf: '#', zip: '#', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg' }
+          { title: 'Microwave Amplifier', desc: 'S-parameter analysis', level: 'Beginner', pdf: 'https://drive.google.com/file/d/1M1ilShzyjZOOwNrf45_VAkSdrwLR5BRl/preview', zip: 'https://drive.google.com/uc?export=download&id=197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/ADS/ADS-1.jpg' }
         ]
       },
       HFSS: {
         logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png',
         description: 'Electromagnetic simulations for antenna and PCB layout validation.',
         items: [
-          { title: '3D Antenna Model', desc: 'Simulation and optimization using Ansys HFSS', level: 'Beginner', pdf: '#', zip: '#', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png' }
+          { title: '3D Antenna Model', desc: 'Simulation and optimization using Ansys HFSS', level: 'Beginner', pdf: 'https://drive.google.com/file/d/1M1ilShzyjZOOwNrf45_VAkSdrwLR5BRl/preview', zip: 'https://drive.google.com/uc?export=download&id=197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Ansys/Ansys-1.png' }
         ]
       },
       Altium: {
         logo: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-1.png',
         description: 'PCB design projects, including embedded systems and RF boards.',
         items: [
-          { title: 'Power Distribution Unit V2', desc: 'Design of a power distribution unit for a Formula Student car', level: 'Beginner', pdf: '#', zip: '#', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDU.png' }
+          { title: 'Power Distribution Unit V2', desc: 'Design of a power distribution unit for a Formula Student car', level: 'Beginner', pdf: 'https://drive.google.com/file/d/1M1ilShzyjZOOwNrf45_VAkSdrwLR5BRl/preview', zip: 'https://drive.google.com/uc?export=download&id=197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDU.png' },
+          { title: 'Power Distribution Unit V1', desc: 'Design of a power distribution unit for a Formula Student car', level: 'Beginner', pdf: 'https://drive.google.com/file/d/1M1ilShzyjZOOwNrf45_VAkSdrwLR5BRl/preview', zip: 'https://drive.google.com/uc?export=download&id=197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDUV1.png' },
+          { title: 'Brake System Plausibility Device', desc: 'Design of a Brake and Power delivery plausibility detection PCB for a Formula Student car', level: 'Beginner', pdf: 'https://drive.google.com/file/d/1M1ilShzyjZOOwNrf45_VAkSdrwLR5BRl/preview', zip: 'https://drive.google.com/uc?export=download&id=197Lg0ja8FpopiNTngPZ9JGMDgR4oL7Kr', image: 'https://ivanalpu.github.io/PersonalPortfolio/private_assets/images/Altium/Altium-PDU.png' }
         ]
       }
     };
@@ -357,6 +386,7 @@
 
     /* Load project category */
     function loadCategory(name) {
+      backBtn.style.display = "flex";
       const data = projects[name];
       if (!data) return;
       const levels = ['Beginner','Intermediate','Advanced'];
@@ -408,11 +438,45 @@
       }
     });
 
-    function openProject(pdf, zip) {
-      modal.classList.add('show');
-      pdfViewer.src = pdf;
-      downloadZip.href = zip || '#';
+function openProject(pdf, zip) {
+  console.log("openProject called with:", { pdf, zip });
+
+  // Si no hay PDF válido, abrir ZIP en nueva pestaña (si existe) o alertar
+  const invalidPdf = !pdf || pdf === "#" || pdf.trim() === "";
+  if (invalidPdf && (!zip || zip === "#" || zip.trim() === "")) {
+    // No hay recurso para mostrar
+    alert("Este proyecto no tiene PDF ni ZIP disponible.");
+    return;
+  }
+
+  // Si hay zip pero no pdf, abrir zip en nueva pestaña
+  if (invalidPdf && zip && zip !== "#") {
+    window.open(zip, '_blank');
+    return;
+  }
+
+  // Abrir el modal correctamente (sin manipular inline display)
+  modal.classList.add('show');
+
+  // Forzamos el src del iframe (si el PDF viene de GoogleDrive puede mostrar su propio popup; eso no lo controlamos)
+  pdfViewer.src = pdf || "";
+
+  // Habilitar enlace de descarga
+  downloadZip.href = zip || '#';
+
+  // Pequeño fallback: si en 1s el iframe sigue vacío (por bloqueo), ofrecer abrir en nueva pestaña
+  setTimeout(() => {
+    if (!pdfViewer.src || pdfViewer.src === '' || pdfViewer.src === '#') {
+      console.warn("Iframe no cargó PDF; mostrando alternativa si está disponible.");
+      if (zip && zip !== '#') {
+        if (confirm("No se puede mostrar el PDF embebido. ¿Quieres abrir el ZIP en una nueva pestaña?")) {
+          window.open(zip, '_blank');
+        }
+      }
     }
+  }, 1000);
+}
+
 
     /* Ensure modal close by clicking outside */
     modal.addEventListener('click', (ev) => {
@@ -429,12 +493,14 @@
       experienceView.style.display = "none";
       homeBtn.style.display = "none";
       sidebar.classList.remove('show');
+      backBtn.style.display = "none";
+
       // clear boxes so content reloads fresh next time
       programBox.innerHTML = "";
       experienceBox.innerHTML = "";
     }
     function showExperienceList() {
-
+      backBtn.style.display = "none";
       let html = `
         <h2 style="margin-bottom:20px;">Experience</h2>
         <div style="
@@ -470,7 +536,7 @@
     }
 
     function openExperienceDetail(id) {
-
+      backBtn.style.display = "flex";
       const exp = experiences.find(e => e.id === id);
       if (!exp) return;
 
@@ -701,6 +767,22 @@
         }
       }
     });
+    function goBack() {
+      // Si estamos en una página de detalle → volver al listado
+      if (document.getElementById("experienceView").style.display === "block") {
+        showExperienceList();
+        return;
+      }
+
+      // Si estamos en Projects → volver al Home
+      if (projectsView.style.display === "block") {
+        showHome();
+        return;
+      }
+
+      // Si no, volver al Home siempre
+      showHome();
+    }
 
     // Optional: make project-level links open in new tab when pdf is external
     // (already handled by iframe modal)
